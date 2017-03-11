@@ -26,6 +26,7 @@
         </div>
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
             <a href="#overview" class="mdl-layout__tab is-active">О технологии</a>
+            <a href="#result" class="mdl-layout__tab">Результаты</a>
         </div>
     </header>
     <main class="mdl-layout__content">
@@ -33,8 +34,150 @@
             <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
                 <div class="mdl-card mdl-cell mdl-cell--12-col">
                     <div class="mdl-card__supporting-text">
-                        <h4>О проекте</h4>
-
+                        <p>Здесь я буду размещать свои результаты <a target="_blank"
+                                                                     href="https://ru.wikipedia.org/wiki/%D0%A4%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D1%8F">фотограмметрии</a>.<br/>
+                            <br/>
+                            Эта технология неплохая замена для обычного 3D-сканирования и не требует дорогостоящего
+                            оборудования. Однако, для получения хорошего результата нужна предварительная разметка
+                            фотографий и большие вычислительные мощности для обработки.</p>
+                        <br/>
+                        <p>Начинают с подготовки серии снимков, нужно соблюдать ряд требований:</p>
+                        <ul>
+                            <li>Объект должен быть в кадре полностью;</li>
+                            <li>Крайне желательно бестеневое освещение, например, памятник можно снимать в пасмурную
+                                погоду;
+                            </li>
+                            <li>Отделение предмета от фона значительно облегчает обработку, к примеру, уменьшите глубину
+                                резкости, чтобы размыть задний план;
+                            </li>
+                        </ul>
+                        <p>Требуется минимум одна серия, не менее 50 фото, размещённая в плоскости, проходящей через
+                            центр масс объекта съёмки. В идеале, нужно иметь 2-3 серий расположенные в пересекающихся
+                            плоскостях.</p>
+                        <br/>
+                        <p>Далее, фотографии необходимо обработать специализированным софтом, выбор невелик, я
+                            попробовал 3 наиболее интересных:</p>
+                        <ul>
+                            <li><b>Autodesk 123D</b> - бесплатный, но в силу ряда ограничений не подходит для предметов
+                                больше статуэтки, из плюсов — облачный, а значит вам не потребуется мощный компьютер.
+                            </li>
+                            <li><b>ContextCapture</b> - мощный программный пакет, в первую очередь, предназначенный для
+                                фотограммометрирования ландшафтов и зданий, имеет удобное распараллеливание задачи на
+                                несколько машин.
+                            </li>
+                            <li><b>Agisoft PhotoScan</b> — очень интересный продукт, включает в себя редактор разметки
+                                фотографий, сложнее ContextCapture за счёт обилия настроек, но быстрее.
+                            </li>
+                        </ul>
+                        <p>Обращаю внимание, ContextCapture и Agisoft PhotoScan платные, триал-версии ограничены только
+                            по времени, но чтобы их получить придётся написать производителю. За исключением 123D,
+                            обработка происходит локально, PhotoScan менее прожорлив, но вам всё
+                            равно понадобится минимум 4–8 гб оперативной памяти и как можно более мощный процессор.</p>
+                        <br/>
+                        <p>Процесс обработки состоит из нескольких этапов:
+                        <p>
+                        <ul class="numbered">
+                            <li><b>Подготовка фотографии.</b> Если объект снимался на сложном или неконтрастном фоне
+                                желательно
+                                обозначить места где его точно нет.
+                            </li>
+                            <li><b>Аэротриангуляция</b>, в ходе которой определяется положение и направление каждого
+                                снимка.
+                                Кроме
+                                того, ищутся первые точки объекта. Этот этап не требует много ресурсов, большинство
+                                современных
+                                машин обработает 75 фотографий за 2-3 часа.
+                            </li>
+                            <li><b>Уплотнение облака точек.</b> Результатом аэротриангуляции является облако из
+                                нескольких
+                                сотен точек, которые лежат на поверхности объекта, но для построения модели нужно найти
+                                ещё
+                                сотни тысяч. Этот процесс крайне ресурсоёмок и может занимать десятки часов.
+                            </li>
+                            <li><b>Построение меша.</b> По плотному облаку уже можно построить модель. В том числе это
+                                можно
+                                сделать
+                                в другом ПО, скажем в Blender.
+                            </li>
+                            <li><b>Построение текстуры.</b> К готовому мешу можно привязать текстуру, она собирается из
+                                кусочков
+                                фотографий, процесс длительный, но не слишком требовательный к ресурсам.
+                            </li>
+                            <li><b>Постобработка.</b> Для использования модель всё ещё не подходит, надо убрать всё
+                                лишнее,
+                                оптимизировать и исправить меш. Это делается в стороннем ПО, том же Blender или другом
+                                3D
+                                пакете.
+                            </li>
+                        </ul>
+                        <br/>
+                        <p>Пока, я буду выкладывать результаты без текстур. Во-первых, они мешают восприятию самой
+                            модели,
+                            во-вторых, исправляя модель надо исправлять и текстуру, я не слишком хорошо это умею.</p>
+                        <br/>
+                        <p>По любым вопросам вы можете написать мне на <a target="_blank"
+                                                                          href="mailto:thelongrunsmoke@gmail.com">почту</a>
+                            или в <a target="_blank" href="https://vk.com/mrworf">ВК</a>.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="mdl-layout__tab-panel" id="result">
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <div class="mdl-card mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text">
+                        <h4>Олени</h4>
+                        <div class="overlay" onclick="showLiveModel(this, 'deers')">
+                            <span>Просмотр</span>
+                            <img src="images/thumbs/deers_thumb.jpg"/>
+                        </div>
+                        <x3d class="x3d" width="100%" height="600px">
+                            <scene>
+                                <background skyColor="0.2 0.2 0.2" transparency="0"></background>
+                                <viewpoint orientation="0 -0.2 0 1" position="-150 30 100"></viewpoint>
+                                <inline id="deers" url=""/>
+                            </scene>
+                        </x3d>
+                        <div class="desc">
+                            <img class="photo" src="images/content/deers.jpg">
+                            <p>Эти олени стоят в Омске, на набережной Иртыша. Модель создана на базе 75 снимков
+                                сделанных цифромыльницей.
+                                Глянцевая поверхность очень сильно мешает, получить нормальный результат удалось только
+                                с помощью Agisoft PhotoScan.<br/>
+                                <br/>
+                                Видно, что многие мелки детали потеряны, но в целом, для печати большее качество не
+                                требуется.
+                            </p>
+                            <a class="model" target="_blank"
+                               href="https://github.com/TheLongRunSmoke/Photogrammetry/raw/master/deers.stl">STL</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <div class="mdl-card mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text">
+                        <h4>«Детство»</h4>
+                        <div class="overlay" onclick="showLiveModel(this, 'childhood')">
+                            <span>Просмотр</span>
+                            <img src="images/thumbs/childhood_thumb.jpg"/>
+                        </div>
+                        <x3d class="x3d" width="100%" height="600px">
+                            <scene>
+                                <background skyColor="0.2 0.2 0.2" transparency="0"></background>
+                                <viewpoint orientation="0 0.5 0 1" position="180 15 120"></viewpoint>
+                                <inline id="childhood" url=""/>
+                            </scene>
+                        </x3d>
+                        <div class="desc">
+                            <img class="photo" src="images/content/childhood.jpg">
+                            <p>Данная скульптурная композиция стоит в Детском парке города Кургана.<br/>
+                                <br/>
+                                Всего 50 фотографии сделанных видавшем виды Canon 350d. Поскольку это первая проба технологии, я решил резместить здесь модель которую получил летом 2016 года.
+                            </p>
+                            <a class="model" target="_blank"
+                               href="https://github.com/TheLongRunSmoke/Photogrammetry/raw/master/childhood.stl">STL</a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -42,16 +185,14 @@
         <footer class="mdl-mega-footer">
             <div class="mdl-mega-footer--bottom-section">
                 <ul class="mdl-mega-footer--link-list">
-                    <li><a href="https://thelongrunsmoke.github.io/photogrammetry">Fork this page</a></li>
+                    <li><a href="https://github.com/TheLongRunSmoke">@thelongrunsmoke 03/07/17</a></li>
                 </ul>
             </div>
         </footer>
     </main>
 </div>
 <script src="scripts/material.min.js"></script>
-<script src="scripts/x3dom.js"> </script>
-<!--<script src="scripts/x3dom.js"> </script>-->
-<!--<link rel='stylesheet' type='text/css' href='http://www.x3dom.org/x3dom/release/x3dom.js'/>-->
+<script src="scripts/x3dom.js"></script>
 <script src="scripts/main.js"></script>
 </body>
 </html>
